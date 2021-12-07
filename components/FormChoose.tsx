@@ -1,25 +1,26 @@
 import Link from "next/link";
 import { chocolateList } from "../data/chocolateList";
-import { choicesIndex } from "../data/choicesIndex";
+import { randomisedChoices } from "../data/choicesIndex";
 import { InputChoice } from "./InputChoice";
 
 type FormChooseProps = {};
 
 export function FormChoose(props: FormChooseProps) {
-	const choiceInputs = choicesIndex.map(([idA, idB], i) => (
+	const createInputs = randomisedChoices.map(([idA, idB], i) => (
 		<InputChoice
 			key={i}
-			name={"chocolate" + i}
+			name={`chocolate-${idA}v${idB}`}
 			idA={idA}
-			choiceA={chocolateList[idA].name}
+			labelA={chocolateList[idA].name}
 			idB={idB}
-			choiceB={chocolateList[idB].name}
+			labelB={chocolateList[idB].name}
+			randomBool={Math.random() < 0.5}
 		></InputChoice>
 	));
 
 	return (
 		<form action="">
-			{choiceInputs}
+			{createInputs}
 
 			<section>
 				<Link href="/chocolate/results" passHref>

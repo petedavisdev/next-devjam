@@ -1,35 +1,38 @@
 type InputChoiceProps = {
 	name: string;
 	idA: number;
-	choiceA: string;
+	labelA: string;
 	idB: number;
-	choiceB: string;
+	labelB: string;
+	randomBool: boolean;
 };
 
 export function InputChoice(props: InputChoiceProps) {
-	const idA = props.name + props.idA;
-	const idB = props.name + props.idB;
+	const idA = props.name + "-" + props.idA;
+	const idB = props.name + "-" + props.idB;
+
+	function createInput(id: string, label: string) {
+		return (
+			<>
+				<input
+					type="radio"
+					name={props.name}
+					id={id}
+					value={id}
+					required
+				/>
+				<label htmlFor={id}>{label}</label>
+			</>
+		);
+	}
 
 	return (
 		<fieldset>
 			<legend>Which milk chocolate is yummiest?</legend>
-			<input
-				type="radio"
-				name={props.name}
-				id={idA}
-				value={idA}
-				required
-			/>
-			<label htmlFor={idA}>{props.choiceA}</label>
 
-			<input
-				type="radio"
-				name={props.name}
-				id={idB}
-				value={idB}
-				required
-			/>
-			<label htmlFor={idB}>{props.choiceB}</label>
+			{props.randomBool && createInput(idA, props.labelA)}
+			{createInput(idB, props.labelB)}
+			{!props.randomBool && createInput(idA, props.labelA)}
 		</fieldset>
 	);
 }
