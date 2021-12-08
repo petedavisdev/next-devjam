@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { chocolateList } from "../data/chocolateList";
 import { randomisedChoices } from "../data/choicesIndex";
@@ -26,7 +27,13 @@ export function FormChoose(props: FormChooseProps) {
 					value={idA}
 					required
 				/>
-				{chocolateList[idA].name}
+
+				<Image
+					src={chocolateList[idA].imageUrl}
+					alt={chocolateList[idA].name}
+					width={540}
+					height={540}
+				/>
 			</label>
 
 			<label>
@@ -36,7 +43,13 @@ export function FormChoose(props: FormChooseProps) {
 					value={idB}
 					required
 				/>
-				{chocolateList[idB].name}
+
+				<Image
+					src={chocolateList[idB].imageUrl}
+					alt={chocolateList[idB].name}
+					width={540}
+					height={540}
+				/>
 			</label>
 		</Choice>
 	));

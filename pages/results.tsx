@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { chocolateList } from "../data/chocolateList";
 
 export default function ChocolateResults() {
@@ -10,11 +11,14 @@ export default function ChocolateResults() {
 
 	console.log(scoredChoices);
 
-	const resultsList = scoredChoices.map(([score, { name }], index) => (
-		<li key={index}>
-			{name}: {score}
-		</li>
-	));
+	const resultsList = scoredChoices.map(
+		([score, { name, imageUrl }], index) => (
+			<li key={index}>
+				<Image src={imageUrl} alt={name} width={80} height={80} />
+				{score}
+			</li>
+		)
+	);
 
 	return (
 		<main>
