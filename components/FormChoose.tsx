@@ -1,30 +1,52 @@
-import Link from "next/link";
+import { useForm } from "react-hook-form";
 import { chocolateList } from "../data/chocolateList";
 import { randomisedChoices } from "../data/choicesIndex";
-import { InputChoice } from "./InputChoice";
+import { Choice } from "./Choice";
 
 type FormChooseProps = {};
 
 export function FormChoose(props: FormChooseProps) {
+	const { register, handleSubmit } = useForm();
+
+	function handleVoteSubmit(data: any) {
+		const scores = chocolateList.map((item, index) => {
+			return Object.values(data).filter(
+				(value) => index.toString() === value
+			).length;
+		});
+		console.log(scores);
+	}
+
 	const createInputs = randomisedChoices.map(([idA, idB], i) => (
-		<InputChoice
-			key={i}
-			name={`chocolate-${idA}v${idB}`}
-			idA={idA}
-			labelA={chocolateList[idA].name}
-			idB={idB}
-			labelB={chocolateList[idB].name}
-		></InputChoice>
+		<Choice legend="Which is yummiest?" key={i}>
+			<label>
+				<input
+					type="radio"
+					{...register(`${idA}v${idB}`)}
+					value={idA}
+					required
+				/>
+				{chocolateList[idA].name}
+			</label>
+
+			<label>
+				<input
+					type="radio"
+					{...register(`${idA}v${idB}`)}
+					value={idB}
+					required
+				/>
+				{chocolateList[idB].name}
+			</label>
+		</Choice>
 	));
 
 	return (
-		<form action="">
+		<form onSubmit={handleSubmit((data) => handleVoteSubmit(data))}>
 			{createInputs}
 
 			<section>
-				<Link href="/chocolate/results" passHref>
-					<button type="button">Vote</button>
-				</Link>
+				<button type="submit">Vote</button>
 			</section>
 		</form>
 	);

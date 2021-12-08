@@ -7,6 +7,8 @@ const choicesIndex = [
 	[Math.random(), 2, 3],
 ];
 
-export const randomisedChoices = choicesIndex
-	.sort()
-	.map(([random, a, b]) => (random < 0.5 ? [a, b] : [b, a]));
+// export const randomisedChoices = choicesIndex
+// 	.sort()
+// 	.map(([random, a, b]) => (random < 0.5 ? [a, b] : [b, a]));
+
+export const randomisedChoices = choicesIndex.map(([random, a, b]) => [a, b]);

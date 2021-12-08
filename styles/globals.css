@@ -10,16 +10,8 @@ body {
 	box-sizing: border-box;
 }
 
-fieldset {
-	border-color: blue;
-}
-
-fieldset:valid {
-	opacity: 0.5;
-	border-color: silver;
-}
-
+fieldset:valid,
 fieldset:invalid + fieldset {
-	opacity: 0.1;
-	border-color: silver;
+	opacity: 0.2;
+	pointer-events: none;
 }
