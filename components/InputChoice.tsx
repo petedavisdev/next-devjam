@@ -1,3 +1,5 @@
+// import {useForm} from "react-hook-form"
+
 type InputChoiceProps = {
 	name: string;
 	idA: number;
@@ -7,17 +9,16 @@ type InputChoiceProps = {
 };
 
 export function InputChoice(props: InputChoiceProps) {
-	const idA = props.name + "-" + props.idA;
-	const idB = props.name + "-" + props.idB;
+	// const { register } = useForm();
 
-	function createInput(id: string, label: string) {
+	function createInput(id: string, value: number, label: string) {
 		return (
 			<>
 				<input
 					type="radio"
 					name={props.name}
 					id={id}
-					value={id}
+					value={value}
 					required
 				/>
 				<label htmlFor={id}>{label}</label>
@@ -29,8 +30,8 @@ export function InputChoice(props: InputChoiceProps) {
 		<fieldset>
 			<legend>Which milk chocolate is yummiest?</legend>
 
-			{createInput(idA, props.labelA)}
-			{createInput(idB, props.labelB)}
+			{createInput(props.name + "-" + props.idA, props.idA, props.labelA)}
+			{createInput(props.name + "-" + props.idB, props.idB, props.labelB)}
 		</fieldset>
 	);
 }
