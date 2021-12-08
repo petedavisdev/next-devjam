@@ -4,7 +4,6 @@ type InputChoiceProps = {
 	labelA: string;
 	idB: number;
 	labelB: string;
-	randomBool: boolean;
 };
 
 export function InputChoice(props: InputChoiceProps) {
@@ -30,9 +29,8 @@ export function InputChoice(props: InputChoiceProps) {
 		<fieldset>
 			<legend>Which milk chocolate is yummiest?</legend>
 
-			{props.randomBool && createInput(idA, props.labelA)}
+			{createInput(idA, props.labelA)}
 			{createInput(idB, props.labelB)}
-			{!props.randomBool && createInput(idA, props.labelA)}
 		</fieldset>
 	);
 }

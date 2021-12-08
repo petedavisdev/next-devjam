@@ -9,4 +9,4 @@ const choicesIndex = [
 
 export const randomisedChoices = choicesIndex
 	.sort()
-	.map(([random, a, b]) => [a, b]);
+	.map(([random, a, b]) => (random < 0.5 ? [a, b] : [b, a]));

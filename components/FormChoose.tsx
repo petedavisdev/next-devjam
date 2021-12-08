@@ -14,7 +14,6 @@ export function FormChoose(props: FormChooseProps) {
 			labelA={chocolateList[idA].name}
 			idB={idB}
 			labelB={chocolateList[idB].name}
-			randomBool={Math.random() < 0.5}
 		></InputChoice>
 	));
 
