@@ -11,15 +11,15 @@ export default function ChocolateResults() {
 	console.log(scoredChoices);
 
 	const resultsList = scoredChoices.map(([score, { name }], index) => (
-		<li key="index">
+		<li key={index}>
 			{name}: {score}
 		</li>
 	));
 
 	return (
-		<>
+		<main>
 			<h1>My results</h1>
 			<ol>{resultsList}</ol>
-		</>
+		</main>
 	);
 }
