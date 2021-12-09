@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { chocolateList } from "../data/chocolateList";
 import { randomisedChoices } from "../data/choicesIndex";
-import { Choice } from "./Choice";
 
 type FormChooseProps = {};
 
@@ -18,40 +17,40 @@ export function FormChoose(props: FormChooseProps) {
 		console.log(scores);
 	}
 
-	const createInputs = randomisedChoices.map(([idA, idB], i) => (
-		<Choice legend="Which is yummiest?" key={i}>
-			<label>
-				<input
-					type="radio"
-					{...register(`${idA}v${idB}`)}
-					value={idA}
-					required
-				/>
-
+	const createInputs = randomisedChoices.map(([a, b], i) => (
+		<fieldset key={i}>
+			<input
+				type="radio"
+				{...register(`${a}v${b}`)}
+				id={`${a}v${b}-${a}`}
+				value={a}
+				required
+			/>
+			<label htmlFor={`${a}v${b}-${a}`}>
 				<Image
-					src={chocolateList[idA].imageUrl}
-					alt={chocolateList[idA].name}
+					src={chocolateList[a].imageUrl}
+					alt={chocolateList[a].name}
 					width={540}
 					height={540}
 				/>
 			</label>
 
-			<label>
-				<input
-					type="radio"
-					{...register(`${idA}v${idB}`)}
-					value={idB}
-					required
-				/>
-
+			<input
+				type="radio"
+				{...register(`${a}v${b}`)}
+				id={`${a}v${b}-${b}`}
+				value={b}
+				required
+			/>
+			<label htmlFor={`${a}v${b}-${b}`}>
 				<Image
-					src={chocolateList[idB].imageUrl}
-					alt={chocolateList[idB].name}
+					src={chocolateList[b].imageUrl}
+					alt={chocolateList[b].name}
 					width={540}
 					height={540}
 				/>
 			</label>
-		</Choice>
+		</fieldset>
 	));
 
 	return (
@@ -59,6 +58,9 @@ export function FormChoose(props: FormChooseProps) {
 			{createInputs}
 
 			<section>
+				<label>
+					Email <input type="email" {...register("email")} required />
+				</label>
 				<button type="submit">Vote</button>
 			</section>
 		</form>

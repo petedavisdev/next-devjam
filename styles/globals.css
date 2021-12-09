@@ -10,8 +10,29 @@ body {
 	box-sizing: border-box;
 }
 
+fieldset {
+	position: absolute;
+	opacity: 1;
+	transition: opacity 2s;
+	border: none;
+}
+
 fieldset:valid,
 fieldset:invalid + fieldset {
-	opacity: 0.2;
+	opacity: 0;
 	pointer-events: none;
+}
+
+[type="radio"] {
+	display: none;
+}
+
+[type="radio"]:checked + label img {
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg) scale(5);
+	}
 }
