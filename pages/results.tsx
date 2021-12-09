@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { chocolateList, ChocolateListItem } from "../data/chocolateList";
+import { chocolateList } from "../data/chocolateList";
 
 export default function ChocolateResults() {
 	const scores = [2, 1, 0, 3];

@@ -1,8 +1,3 @@
-export type ChocolateListItem = {
-	name: string;
-	imageUrl: string;
-};
-
 export const chocolateList = [
 	{
 		name: "Dairy Milk",

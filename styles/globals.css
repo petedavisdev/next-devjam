@@ -1,7 +1,7 @@
 html,
 body {
 	padding: 0;
-	margin: 2em;
+	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -18,7 +18,7 @@ fieldset {
 }
 
 fieldset:valid,
-fieldset:invalid + fieldset {
+fieldset:invalid + * {
 	opacity: 0;
 	pointer-events: none;
 }
@@ -35,4 +35,8 @@ fieldset:invalid + fieldset {
 	100% {
 		transform: rotate(360deg) scale(5);
 	}
+}
+
+label {
+	cursor: pointer;
 }

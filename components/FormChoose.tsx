@@ -1,21 +1,31 @@
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocalStorage } from "react-use";
 import { chocolateList } from "../data/chocolateList";
 import { randomisedChoices } from "../data/choicesIndex";
+import { supabaseLogin } from "../supabase";
 
 type FormChooseProps = {};
 
 export function FormChoose(props: FormChooseProps) {
 	const { register, handleSubmit } = useForm();
+	const [vote, setVote] = useLocalStorage("vote");
+	const [authorising, setAuthorising] = useState(false);
 
-	function handleVoteSubmit(data: any) {
+	async function handleVoteSubmit(data: any) {
 		const scores = chocolateList.map((item, index) => {
 			return Object.values(data).filter(
 				(value) => index.toString() === value
 			).length;
 		});
-		console.log(scores);
+
+		setVote(scores);
+		supabaseLogin(data.email);
+		setAuthorising(true);
 	}
+
+	if (authorising) return <p>Check your email</p>;
 
 	const createInputs = randomisedChoices.map(([a, b], i) => (
 		<fieldset key={i}>
@@ -62,6 +72,7 @@ export function FormChoose(props: FormChooseProps) {
 					Email <input type="email" {...register("email")} required />
 				</label>
 				<button type="submit">Vote</button>
+				<h2>{authorising && "Check your email"}</h2>
 			</section>
 		</form>
 	);
