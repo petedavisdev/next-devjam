@@ -16,25 +16,23 @@ export async function supabaseLogin(email: string) {
 }
 
 export async function insertVote(
-	user_id: string,
+	email: string,
 	choice_id: number,
 	scores: any
 ) {
 	const { data, error } = await supabase
 		.from("votes")
-		.insert([{ user_id, choice_id, scores }]);
+		.insert([{ email, choice_id, scores }]);
 }
 
-export async function readMyVote(user_id: string, choice_id: number) {
+export async function readMyVote(email: string, choice_id: number) {
 	let { data: votes, error } = await supabase
 		.from("votes")
 		.select("scores")
-		.eq("user_id", user_id)
+		.eq("email", email)
 		.eq("choice_id", choice_id);
 
 	if (!votes) return [];
-
-	console.log(votes[0].scores);
 
 	return votes[0].scores;
 }

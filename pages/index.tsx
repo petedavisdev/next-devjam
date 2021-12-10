@@ -14,14 +14,7 @@ export default function Home() {
 		supabase.auth.onAuthStateChange((_event, session) => {
 			setSession(session);
 		});
-
-		const userId = session?.user?.id;
-		console.log(userId);
-
-		if (!userId) return;
-
-		insertVote(userId, 1, vote);
-	}, [session?.user?.id, vote]);
+	}, []);
 
 	return (
 		<main>

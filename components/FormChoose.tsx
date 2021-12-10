@@ -1,16 +1,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocalStorage } from "react-use";
 import { chocolateList } from "../data/chocolateList";
 import { randomisedChoices } from "../data/choicesIndex";
-import { supabaseLogin } from "../supabase";
+import { insertVote, supabaseLogin } from "../supabase";
 
 type FormChooseProps = {};
 
 export function FormChoose(props: FormChooseProps) {
 	const { register, handleSubmit } = useForm();
-	const [vote, setVote] = useLocalStorage("vote");
 	const [authorising, setAuthorising] = useState(false);
 
 	async function handleVoteSubmit(data: any) {
@@ -20,8 +18,8 @@ export function FormChoose(props: FormChooseProps) {
 			).length;
 		});
 
-		setVote(scores);
 		supabaseLogin(data.email);
+		insertVote(data.email, 1, scores);
 		setAuthorising(true);
 	}
 

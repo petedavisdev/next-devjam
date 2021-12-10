@@ -32,14 +32,19 @@ fieldset:invalid + * {
 }
 
 ol > li:first-child img {
-	animation: spin 3s linear infinite;
+	animation: dance 2s linear infinite;
 }
 
 label {
 	cursor: pointer;
 }
 
-@keyframes spin {
+.flex {
+	display: flex;
+	gap: 4em;
+}
+
+@keyframes dance {
 	25% {
 		transform: rotate(10deg) translateY(10px);
 	}
