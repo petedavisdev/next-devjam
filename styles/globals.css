@@ -28,15 +28,34 @@ fieldset:invalid + * {
 }
 
 [type="radio"]:checked + label img {
-	animation: spin 2s linear infinite;
+	animation: spin-grow 2s linear infinite;
 }
 
-@keyframes spin {
-	100% {
-		transform: rotate(360deg) scale(5);
-	}
+ol > li:first-child img {
+	animation: spin 3s linear infinite;
 }
 
 label {
 	cursor: pointer;
+}
+
+@keyframes spin {
+	25% {
+		transform: rotate(10deg) translateY(10px);
+	}
+	50% {
+		transform: rotate(0) translateY(0);
+	}
+	75% {
+		transform: rotate(-10deg) translateY(10px);
+	}
+	100% {
+		transform: rotate(0) translateY(0);
+	}
+}
+
+@keyframes spin-grow {
+	100% {
+		transform: rotate(360deg) scale(5);
+	}
 }

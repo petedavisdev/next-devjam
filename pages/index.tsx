@@ -2,7 +2,7 @@ import { Session } from "@supabase/supabase-js";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "react-use";
-import { supabase } from "../supabase";
+import { insertVote, supabase } from "../supabase";
 
 export default function Home() {
 	const [session, setSession] = useState<Session | null>(null);
@@ -15,8 +15,13 @@ export default function Home() {
 			setSession(session);
 		});
 
-		console.log(vote);
-	}, [vote]);
+		const userId = session?.user?.id;
+		console.log(userId);
+
+		if (!userId) return;
+
+		insertVote(userId, 1, vote);
+	}, [session?.user?.id, vote]);
 
 	return (
 		<main>
