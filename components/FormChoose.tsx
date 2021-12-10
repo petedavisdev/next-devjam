@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { chocolateList } from "../data/chocolateList";
+import { choiceArray } from "../data/choice";
 import { randomisedChoices } from "../data/choicesIndex";
 import { insertVote, supabaseLogin } from "../supabase";
 
@@ -12,7 +12,7 @@ export function FormChoose(props: FormChooseProps) {
 	const [authorising, setAuthorising] = useState(false);
 
 	async function handleVoteSubmit(data: any) {
-		const scores = chocolateList.map((item, index) => {
+		const scores = choiceArray.map((item, index) => {
 			return Object.values(data).filter(
 				(value) => index.toString() === value
 			).length;
@@ -36,10 +36,10 @@ export function FormChoose(props: FormChooseProps) {
 			/>
 			<label htmlFor={`${a}v${b}-${a}`}>
 				<Image
-					src={chocolateList[a].imageUrl}
-					alt={chocolateList[a].name}
-					width={540}
-					height={540}
+					src={choiceArray[a].imageUrl}
+					alt={choiceArray[a].name}
+					width={270}
+					height={270}
 				/>
 			</label>
 
@@ -52,10 +52,10 @@ export function FormChoose(props: FormChooseProps) {
 			/>
 			<label htmlFor={`${a}v${b}-${b}`}>
 				<Image
-					src={chocolateList[b].imageUrl}
-					alt={chocolateList[b].name}
-					width={540}
-					height={540}
+					src={choiceArray[b].imageUrl}
+					alt={choiceArray[b].name}
+					width={270}
+					height={270}
 				/>
 			</label>
 		</fieldset>

@@ -1,6 +1,6 @@
-export const chocolateList = [
+export const choiceArray = [
 	{
-		name: "Dairy Milk",
+		name: "Sherry trifle",
 		imageUrl:
 			"https://digitalcontent.api.tesco.com/v2/media/ghs/e872b678-5c95-484d-aed3-f382515ed49f/snapshotimagehandler_99014510.jpeg?h=540&w=540",
 	},

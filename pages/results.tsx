@@ -2,7 +2,7 @@ import { Session } from "@supabase/supabase-js";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { chocolateList } from "../data/chocolateList";
+import { choiceArray } from "../data/choice";
 import { readAllVotes, readMyVote, supabase } from "../supabase";
 
 export default function ChocolateResults() {
@@ -36,7 +36,7 @@ export default function ChocolateResults() {
 		getMyVotes(userEmail, 1);
 	}, [session?.user?.email]);
 
-	const scoredChoices = chocolateList.map((item, i) => {
+	const scoredChoices = choiceArray.map((item, i) => {
 		let total = 0;
 
 		allVotes.forEach((vote) => {
@@ -58,7 +58,7 @@ export default function ChocolateResults() {
 
 	console.log({ myVotes });
 
-	const myScoredChoices = chocolateList.map((item, i) => [myVotes[i], item]);
+	const myScoredChoices = choiceArray.map((item, i) => [myVotes[i], item]);
 	console.log({ myScoredChoices });
 
 	const myResultsList = myScoredChoices
