@@ -47,7 +47,7 @@ export default function ChocolateResults() {
 	});
 
 	const resultsList = scoredChoices
-		.sort((a, b) => b[0] - a[0])
+		.sort((a: any, b: any) => b[0] - a[0])
 		.map(([score, { name, imageUrl }]: any, index) => (
 			<li key={index}>
 				<Image src={imageUrl} alt={name} width={80} height={80} />
@@ -58,7 +58,7 @@ export default function ChocolateResults() {
 	const myScoredChoices = choiceArray.map((item, i) => [myVotes[i], item]);
 
 	const myResultsList = myScoredChoices
-		.sort((a, b) => b[0] - a[0])
+		.sort((a: any, b: any) => b[0] - a[0])
 		.map(([score, { name, imageUrl }]: any, index) => (
 			<li key={index}>
 				<Image src={imageUrl} alt={name} width={80} height={80} />
