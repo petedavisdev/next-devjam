@@ -47,8 +47,7 @@ export default function ChocolateResults() {
 	});
 
 	const resultsList = scoredChoices
-		.sort()
-		.reverse()
+		.sort((a, b) =>  b[0] - a[0])
 		.map(([score, { name, imageUrl }]: any, index) => (
 			<li key={index}>
 				<Image src={imageUrl} alt={name} width={80} height={80} />
