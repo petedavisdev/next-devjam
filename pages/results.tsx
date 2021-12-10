@@ -81,9 +81,18 @@ export default function ChocolateResults() {
 						{myVotes.length > 0 ? (
 							myResultsList
 						) : (
-							<Link href="/choose">
-								<a>Vote</a>
-							</Link>
+							<>
+								<p>
+									<Link href="/choose">
+										<a>Vote</a>
+									</Link>
+								</p>
+								<p>
+									<Link href="/account">
+										<a>Log in</a>
+									</Link>
+								</p>
+							</>
 						)}
 					</ol>
 				</div>
