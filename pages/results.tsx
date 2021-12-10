@@ -1,8 +1,9 @@
 import { Session } from "@supabase/supabase-js";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { chocolateList } from "../data/chocolateList";
-import { readAllVotes, supabase } from "../supabase";
+import { readAllVotes, readMyVote, supabase } from "../supabase";
 
 export default function ChocolateResults() {
 	const [session, setSession] = useState<Session | null>(null);
@@ -15,7 +16,7 @@ export default function ChocolateResults() {
 	}
 
 	async function getMyVotes(email: string, choice: number) {
-		const votes: any = await readMyVotes(email, choice);
+		const votes: any = await readMyVote(email, choice);
 		setMyVotes(votes);
 	}
 
@@ -55,7 +56,10 @@ export default function ChocolateResults() {
 			</li>
 		));
 
+	console.log({ myVotes });
+
 	const myScoredChoices = chocolateList.map((item, i) => [myVotes[i], item]);
+	console.log({ myScoredChoices });
 
 	const myResultsList = myScoredChoices
 		.sort()
@@ -77,12 +81,18 @@ export default function ChocolateResults() {
 				</div>
 				<div>
 					<h2>Me</h2>
-					<ol>{myResultsList}</ol>
+
+					<ol>
+						{myVotes.length > 0 ? (
+							myResultsList
+						) : (
+							<Link href="/choose">
+								<a>Vote</a>
+							</Link>
+						)}
+					</ol>
 				</div>
 			</div>
 		</main>
 	);
-}
-function readMyVotes(email: string, choice: number): any {
-	throw new Error("Function not implemented.");
 }
