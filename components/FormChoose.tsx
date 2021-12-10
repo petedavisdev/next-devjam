@@ -66,6 +66,7 @@ export function FormChoose(props: FormChooseProps) {
 			{createInputs}
 
 			<section>
+				<p>Verify your vote and see the results</p>
 				<label>
 					Email <input type="email" {...register("email")} required />
 				</label>
