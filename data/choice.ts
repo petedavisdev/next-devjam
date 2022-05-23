@@ -1,6 +1,6 @@
 export const choiceArray = [
 	{
-		name: "Sherry trifle",
+		name: "Dairy Milk",
 		imageUrl:
 			"https://digitalcontent.api.tesco.com/v2/media/ghs/e872b678-5c95-484d-aed3-f382515ed49f/snapshotimagehandler_99014510.jpeg?h=540&w=540",
 	},
@@ -19,4 +19,4 @@ export const choiceArray = [
 		imageUrl:
 			"https://digitalcontent.api.tesco.com/v2/media/ghs/939eb80d-cb39-4c18-adb8-fb5dd06d19a7/snapshotimagehandler_1859009415.jpeg?h=540&w=540",
 	},
-];
+]
